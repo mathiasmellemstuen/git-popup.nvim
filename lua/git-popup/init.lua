@@ -110,6 +110,8 @@ function out.switchFocus()
 end
 
 function out.open()
+	out.apply_keymap()
+
 	vim.schedule(function()
 		git_input_field:mount()
 		git_text_field:mount()
@@ -123,6 +125,20 @@ function out.close()
 	vim.schedule(function()
 		git_text_field:unmount()
 		git_input_field:unmount()
+	end)
+end
+
+
+function out.apply_keymap()
+	vim.schedule(function()
+		-- Binding the keymap
+		git_input_field:map("i", keymaps.switch, require"git-popup".switchFocus)
+		git_text_field:map("i", keymaps.switch, require"git-popup".switchFocus)
+		git_text_field:map("n", keymaps.switch, require"git-popup".switchFocus)
+
+		git_text_field:map("n", keymaps.close, require"git-popup".close)
+		git_input_field:map("n", keymaps.close, require"git-popup".close)
+		git_input_field:map("i", keymaps.close, require"git-popup".close)
 	end)
 end
 
@@ -141,17 +157,6 @@ function out.setup(options)
 			keymaps.close = options.keymaps.close
 		end
 	end
-
-	vim.schedule(function()
-		-- Binding the keymap
-		git_input_field:map("i", keymaps.switch, require"git-popup".switchFocus)
-		git_text_field:map("i", keymaps.switch, require"git-popup".switchFocus)
-		git_text_field:map("n", keymaps.switch, require"git-popup".switchFocus)
-
-		git_text_field:map("n", keymaps.close, require"git-popup".close)
-		git_input_field:map("n", keymaps.close, require"git-popup".close)
-		git_input_field:map("i", keymaps.close, require"git-popup".close)
-	end)
 end
 
 return out
