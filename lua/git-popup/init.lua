@@ -125,6 +125,7 @@ function out.setup(options)
 	git_text_field:map("n", options.keymaps.switch, out.switchFocus)
 	git_text_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("n", options.keymaps.close, out.close)
+
 	else
 
 	git_input_field:map("i", "<TAB>", out.switchFocus)
