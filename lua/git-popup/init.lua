@@ -118,7 +118,7 @@ function out.setup(options)
 	git_text_field:on(event.BufWinEnter, function()
 		vim.api.nvim_command("set wrap")
 	end)
-	if not (options.keymaps.switch == nil and options.keymaps.close == nil) then
+	if not (options.keymaps.switch == nil and options.keymaps.close == nil and options.keymaps.open == nil) then
 
 	git_input_field:map("i", options.keymaps.switch, out.switchFocus)
 	git_text_field:map("i", options.keymaps.switch, out.switchFocus)
@@ -126,6 +126,7 @@ function out.setup(options)
 	git_text_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("n", options.keymaps.close, out.close)
 
+	vim.api.set_keymap("n", options.keymaps.open, out.open)
 	else
 
 	git_input_field:map("i", "<TAB>", out.switchFocus)
@@ -133,6 +134,8 @@ function out.setup(options)
 	git_text_field:map("n", "<TAB>", out.switchFocus)
 	git_text_field:map("n", "<ESC>", out.close)
 	git_input_field:map("n", "<ESC>", out.close)
+
+	vim.api.set_keymap("n", "<leader>g", out.open)
 	end
 end
 
