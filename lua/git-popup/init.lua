@@ -104,7 +104,6 @@ function out.switchFocus()
 end
 
 function out.open()
-
 	git_text_field:hide()
 	git_input_field:show()
 end
@@ -118,7 +117,7 @@ function out.setup(options)
 	git_text_field:on(event.BufWinEnter, function()
 		vim.api.nvim_command("set wrap")
 	end)
-	
+
 	-- Default keymappings
 	keymaps = {
 		switch = "<TAB>",
@@ -144,18 +143,7 @@ function out.setup(options)
 	git_input_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("i", options.keymaps.close, out.close)
 
-	git_input_field:on(event.InsertEnter, function()
-
-		git_input_field:map("i", options.keymaps.switch, out.switchFocus)
-		git_text_field:map("i", options.keymaps.switch, out.switchFocus)
-		git_text_field:map("n", options.keymaps.switch, out.switchFocus)
-
-		git_text_field:map("n", options.keymaps.close, out.close)
-		git_input_field:map("n", options.keymaps.close, out.close)
-		git_input_field:map("i", options.keymaps.close, out.close)
-	end)
-	
-
+	-- Mounting and then hiding the UI
 	git_text_field:mount()
 	git_input_field:mount()
 	out.close()
