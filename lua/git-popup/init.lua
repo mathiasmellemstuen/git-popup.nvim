@@ -126,8 +126,7 @@ function out.setup(options)
 	git_text_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("n", options.keymaps.close, out.close)
 
-	print(options.keymaps.open)
-	vim.api.nvim_set_keymap("n", options.keymaps.open, function() out.open() end)
+	vim.api.nvim_set_keymap("n", options.keymaps.open, "<cmd>lua " .. out.open() .. "", {silent = true})
 
 
 	else
@@ -138,7 +137,7 @@ function out.setup(options)
 	git_text_field:map("n", "<ESC>", out.close)
 	git_input_field:map("n", "<ESC>", out.close)
 
-	vim.api.nvim_set_keymap("n", "<leader>g", function() out.open() end)
+	vim.api.nvim_set_keymap("n", "<leader>g", function() out.open() end, {silent = true})
 	end
 end
 
