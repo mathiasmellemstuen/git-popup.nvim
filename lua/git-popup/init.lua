@@ -105,6 +105,7 @@ end
 
 function out.open()
 	git_text_field:hide()
+	git_input_field:mount()
 	git_input_field:show()
 	vim.api.nvim_command("startinsert!")
 end
