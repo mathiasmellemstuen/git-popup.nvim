@@ -114,10 +114,34 @@ function out.close()
 	git_input_field:unmount()
 end
 
-function out.setup()
+function out.setup(options)
 	git_text_field:on(event.BufWinEnter, function()
 		vim.api.nvim_command("set wrap")
 	end)
+	
+	-- Default keymappings
+	keymaps = {
+		switch = "<TAB>",
+		close = "<ESC>",
+	}
+	-- Changing to custom keymap if it was provided
+	if not options.keymaps == nil then
+		if not options.keymaps.switch == nil then
+			keymaps.switch = options.keymaps.switch
+		end
+
+		if not options.keymaps.close == nil then
+			keymaps.close = options.keymaps.close
+		end
+	end
+	-- Binding the keymap
+	git_input_field:map("i", options.keymaps.switch, out.switchFocus)
+	git_text_field:map("i", options.keymaps.switch, out.switchFocus)
+	git_text_field:map("n", options.keymaps.switch, out.switchFocus)
+	git_text_field:map("n", options.keymaps.close, out.close)
+	git_input_field:map("n", options.keymaps.close, out.close)
+	git_input_field:map("i", options.keymaps.close, out.close)
+
 end
 
 return out
