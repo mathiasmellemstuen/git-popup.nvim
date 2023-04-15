@@ -4,6 +4,12 @@ local event = require("nui.utils.autocmd").event
 
 local input_focused = true
 
+-- Default keymappings
+local keymaps = {
+	switch = "<TAB>",
+	close = "<ESC>",
+}
+
 local git_text_field = Popup({
 	enter = false,
 	focusable = true,
@@ -125,11 +131,6 @@ function out.setup(options)
 		vim.api.nvim_command("set wrap")
 	end)
 
-	-- Default keymappings
-	keymaps = {
-		switch = "<TAB>",
-		close = "<ESC>",
-	}
 	-- Changing to custom keymap if it was provided
 	if not options.keymaps == nil then
 		if not options.keymaps.switch == nil then
@@ -142,19 +143,14 @@ function out.setup(options)
 	end
 
 	vim.schedule(function()
+		-- Binding the keymap
+		git_input_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
+		git_text_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
+		git_text_field:map("n", options.keymaps.switch, require"git-popup".switchFocus)
 
-		git_input_field:on(event.WinEnter, function()
-			vim.schedule(function()
-				-- Binding the keymap
-				git_input_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
-				git_text_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
-				git_text_field:map("n", options.keymaps.switch, require"git-popup".switchFocus)
-
-				git_text_field:map("n", options.keymaps.close, require"git-popup".close)
-				git_input_field:map("n", options.keymaps.close, require"git-popup".close)
-				git_input_field:map("i", options.keymaps.close, require"git-popup".close)
-			end)
-		end)
+		git_text_field:map("n", options.keymaps.close, require"git-popup".close)
+		git_input_field:map("n", options.keymaps.close, require"git-popup".close)
+		git_input_field:map("i", options.keymaps.close, require"git-popup".close)
 	end)
 end
 
