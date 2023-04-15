@@ -134,6 +134,8 @@ function out.setup(options)
 			keymaps.close = options.keymaps.close
 		end
 	end
+
+	print(keymaps)
 	-- Binding the keymap
 	git_input_field:map("i", options.keymaps.switch, out.switchFocus)
 	git_text_field:map("i", options.keymaps.switch, out.switchFocus)
