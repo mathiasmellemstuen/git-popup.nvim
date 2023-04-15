@@ -104,15 +104,20 @@ function out.switchFocus()
 end
 
 function out.open()
-	git_text_field:hide()
-	git_input_field:mount()
-	git_input_field:show()
-	vim.api.nvim_command("startinsert!")
+	vim.schedule(function()
+		git_input_field:mount()
+		git_text_field:mount()
+		git_text_field:hide()
+		vim.api.nvim_command("startinsert!")
+
+	end)
 end
 
 function out.close()
-	git_text_field:hide()
-	git_input_field:hide()
+	vim.schedule(function()
+		git_text_field:unmount()
+		git_input_field:unmount()
+	end)
 end
 
 function out.setup(options)
@@ -144,11 +149,6 @@ function out.setup(options)
 	git_text_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("i", options.keymaps.close, out.close)
-
-	-- Mounting and then hiding the UI
-	git_text_field:mount()
-	git_input_field:mount()
-	out.close()
 end
 
 return out
