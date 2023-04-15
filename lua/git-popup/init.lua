@@ -127,6 +127,9 @@ function out.setup(options)
 	git_input_field:map("n", options.keymaps.close, out.close)
 
 	vim.keymap.set("n", options.keymaps.open, out.open)
+
+	print(options.keymaps.open)
+
 	else
 
 	git_input_field:map("i", "<TAB>", out.switchFocus)
