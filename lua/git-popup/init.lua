@@ -132,6 +132,7 @@ end
 function out.apply_keymap()
 	vim.schedule(function()
 		-- Binding the keymap
+		print("Adding keymappings")
 		git_input_field:map("i", keymaps.switch, require"git-popup".switchFocus)
 		git_text_field:map("i", keymaps.switch, require"git-popup".switchFocus)
 		git_text_field:map("n", keymaps.switch, require"git-popup".switchFocus)
