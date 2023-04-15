@@ -110,13 +110,13 @@ function out.switchFocus()
 end
 
 function out.open()
-	out.apply_keymap()
 
 	vim.schedule(function()
 		git_input_field:mount()
 		git_text_field:mount()
 		git_text_field:hide()
 		vim.api.nvim_command("startinsert!")
+		out.apply_keymap()
 
 	end)
 end
@@ -130,17 +130,14 @@ end
 
 
 function out.apply_keymap()
-	vim.schedule(function()
-		-- Binding the keymap
-		print("Adding keymappings")
-		git_input_field:map("i", keymaps.switch, require"git-popup".switchFocus)
-		git_text_field:map("i", keymaps.switch, require"git-popup".switchFocus)
-		git_text_field:map("n", keymaps.switch, require"git-popup".switchFocus)
+	-- Binding the keymap
+	git_input_field:map("i", keymaps.switch, require"git-popup".switchFocus)
+	git_text_field:map("i", keymaps.switch, require"git-popup".switchFocus)
+	git_text_field:map("n", keymaps.switch, require"git-popup".switchFocus)
 
-		git_text_field:map("n", keymaps.close, require"git-popup".close)
-		git_input_field:map("n", keymaps.close, require"git-popup".close)
-		git_input_field:map("i", keymaps.close, require"git-popup".close)
-	end)
+	git_text_field:map("n", keymaps.close, require"git-popup".close)
+	git_input_field:map("n", keymaps.close, require"git-popup".close)
+	git_input_field:map("i", keymaps.close, require"git-popup".close)
 end
 
 function out.setup(options)
