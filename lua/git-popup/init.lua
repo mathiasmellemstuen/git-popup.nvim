@@ -144,13 +144,13 @@ function out.setup(options)
 
 	vim.schedule(function()
 		-- Binding the keymap
-		git_input_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
-		git_text_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
-		git_text_field:map("n", options.keymaps.switch, require"git-popup".switchFocus)
+		git_input_field:map("i", keymaps.switch, require"git-popup".switchFocus)
+		git_text_field:map("i", keymaps.switch, require"git-popup".switchFocus)
+		git_text_field:map("n", keymaps.switch, require"git-popup".switchFocus)
 
-		git_text_field:map("n", options.keymaps.close, require"git-popup".close)
-		git_input_field:map("n", options.keymaps.close, require"git-popup".close)
-		git_input_field:map("i", options.keymaps.close, require"git-popup".close)
+		git_text_field:map("n", keymaps.close, require"git-popup".close)
+		git_input_field:map("n", keymaps.close, require"git-popup".close)
+		git_input_field:map("i", keymaps.close, require"git-popup".close)
 	end)
 end
 
