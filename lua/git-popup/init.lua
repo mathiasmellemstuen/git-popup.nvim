@@ -104,14 +104,14 @@ function out.switchFocus()
 end
 
 function out.open()
-	git_text_field:mount()
+
 	git_text_field:hide()
-	git_input_field:mount()
+	git_input_field:show()
 end
 
 function out.close()
-	git_text_field:unmount()
-	git_input_field:unmount()
+	git_text_field:hide()
+	git_input_field:hide()
 end
 
 function out.setup(options)
@@ -135,7 +135,6 @@ function out.setup(options)
 		end
 	end
 
-	print(keymaps)
 	-- Binding the keymap
 	git_input_field:map("i", options.keymaps.switch, out.switchFocus)
 	git_text_field:map("i", options.keymaps.switch, out.switchFocus)
@@ -155,7 +154,11 @@ function out.setup(options)
 		git_input_field:map("n", options.keymaps.close, out.close)
 		git_input_field:map("i", options.keymaps.close, out.close)
 	end)
+	
 
+	git_text_field:mount()
+	git_input_field:mount()
+	out.close()
 end
 
 return out
