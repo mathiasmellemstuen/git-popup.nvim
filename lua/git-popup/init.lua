@@ -126,9 +126,9 @@ function out.setup(options)
 	git_text_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("n", options.keymaps.close, out.close)
 
-	vim.keymap.set("n", options.keymaps.open, out.open)
-
 	print(options.keymaps.open)
+	vim.keymap.set("n", options.keymaps.open, function() out.open() end)
+
 
 	else
 
@@ -138,7 +138,7 @@ function out.setup(options)
 	git_text_field:map("n", "<ESC>", out.close)
 	git_input_field:map("n", "<ESC>", out.close)
 
-	vim.keymap.set("n", "<leader>g", out.open)
+	vim.keymap.set("n", "<leader>g", function() out.open() end)
 	end
 end
 
