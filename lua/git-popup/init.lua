@@ -143,9 +143,8 @@ function out.setup(options)
 
 	vim.schedule(function()
 
-		git_input_field:on(event.BufWinEnter, function()
+		git_input_field:on(event.WinEnter, function()
 			vim.schedule(function()
-				print("Hellohello")
 				-- Binding the keymap
 				git_input_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
 				git_text_field:map("i", options.keymaps.switch, require"git-popup".switchFocus)
