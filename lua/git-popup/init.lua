@@ -140,9 +140,21 @@ function out.setup(options)
 	git_input_field:map("i", options.keymaps.switch, out.switchFocus)
 	git_text_field:map("i", options.keymaps.switch, out.switchFocus)
 	git_text_field:map("n", options.keymaps.switch, out.switchFocus)
+
 	git_text_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("n", options.keymaps.close, out.close)
 	git_input_field:map("i", options.keymaps.close, out.close)
+
+	git_input_field:on(event.InsertEnter, function()
+
+		git_input_field:map("i", options.keymaps.switch, out.switchFocus)
+		git_text_field:map("i", options.keymaps.switch, out.switchFocus)
+		git_text_field:map("n", options.keymaps.switch, out.switchFocus)
+
+		git_text_field:map("n", options.keymaps.close, out.close)
+		git_input_field:map("n", options.keymaps.close, out.close)
+		git_input_field:map("i", options.keymaps.close, out.close)
+	end)
 
 end
 
