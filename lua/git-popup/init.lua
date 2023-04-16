@@ -18,7 +18,7 @@ local git_text_field = Popup({
 	},
 	position = {
 		row = 0,
-		col = "50%"
+		col = math.floor(vim.fn.winwidth(0) / 2) - 37
 	},
 	size = {
 		width = "75",
@@ -70,6 +70,9 @@ function CustomInput:mount()
 			end
 		end
 		vim.api.nvim_buf_set_lines(git_text_field.bufnr, -1, -1, false, all_lines)
+		vim.api.nvim_win_call(git_text_field.winid, function()
+			vim.api.nvim_command("G")
+		end)
 	end
 
 	vim.fn.prompt_setcallback(self.bufnr, sub)
@@ -81,7 +84,7 @@ end
 local git_input_field = CustomInput({
 	position = {
 		row = "50%",
-		col = "50%"
+		col = math.floor(vim.fn.winwidth(0) / 2) + 1 - 37
 	},
 	size = {
 		width = "75",
@@ -161,3 +164,4 @@ function out.setup(options)
 end
 
 return out
+
