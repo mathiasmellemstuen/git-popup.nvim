@@ -79,7 +79,10 @@ function CustomInput:mount()
 end
 
 local git_input_field = CustomInput({
-	position = "50%",
+	position = {
+		row = 0,
+		col = "50%"
+	},
 	size = {
 		width = "75",
 	},
