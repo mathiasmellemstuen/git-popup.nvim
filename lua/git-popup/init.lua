@@ -80,7 +80,7 @@ end
 
 local git_input_field = CustomInput({
 	position = {
-		row = 0,
+		row = "50%",
 		col = "50%"
 	},
 	size = {
