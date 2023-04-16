@@ -8,7 +8,7 @@ This plugin provides a easy way to quickly execute git commands in Neovim.
 The plugin can easily be installed with Plug, Nui needs to be installed alongside this
 ```
 Plug 'MunifTanjim/nui.nvim'
-Plug 'mathiasmellemstuen/git-popup'
+Plug 'mathiasmellemstuen/git-popup.nvim'
 ```
 The setup function needs to be configured, with optional keybindings
 ```
