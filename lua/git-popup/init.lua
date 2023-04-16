@@ -70,7 +70,7 @@ function CustomInput:mount()
 			end
 		end
 		vim.api.nvim_buf_set_lines(git_text_field.bufnr, -1, -1, false, all_lines)
-		vim.api.nvim_win_call(git_text_field.winid, function()vim.api.nvim_input("G")end)
+		vim.api.nvim_input(keymaps.switch .. "G" .. keymaps.switch)
 	end
 
 	vim.fn.prompt_setcallback(self.bufnr, sub)
