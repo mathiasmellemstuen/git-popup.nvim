@@ -70,6 +70,8 @@ function CustomInput:mount()
 			end
 		end
 		vim.api.nvim_buf_set_lines(git_text_field.bufnr, -1, -1, false, all_lines)
+
+		-- A hacky method for making the git_text_field move to the bottom
 		vim.api.nvim_input(keymaps.switch .. "G" .. keymaps.switch)
 	end
 
