@@ -64,10 +64,9 @@ function CustomInput:mount()
 	end
 
 	function sub(value)
-		
 		if string.len(value) > 3 then
 			if string.starts(value, "git") then
-				value = value:sub(3)
+				value = value:sub(4)
 			end
 		end
 		git_text_field:show()
