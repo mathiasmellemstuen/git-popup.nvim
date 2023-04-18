@@ -35,6 +35,10 @@ function CustomInput:init(popup_options, options)
 	CustomInput.super.init(self, popup_options, options)
 end
 
+function string.starts(String,Start)
+   return string.sub(String,1,string.len(Start))==Start
+end
+
 function CustomInput:mount()
 	local props = self.input_props
 
@@ -60,7 +64,12 @@ function CustomInput:mount()
 	end
 
 	function sub(value)
-
+		
+		if string.len(value) > 3 then
+			if string.starts(value, "git") then
+				value = value:sub(3)
+			end
+		end
 		git_text_field:show()
 		local out_value = vim.api.nvim_exec("!git " .. value, true)
 		local all_lines = {}
